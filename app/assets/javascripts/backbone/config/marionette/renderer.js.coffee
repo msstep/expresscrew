@@ -2,7 +2,8 @@ do (Marionette) ->
 	_.extend Marionette.Renderer,
 		
 		render: (template, data) ->
-			path = @getTemplate(template)
+			path = JST["backbone/apps/" + template]#@getTemplate(template)
+			console.log "99999"
 			throw "Template #{template} not found!" unless path
 			path(data)
 		

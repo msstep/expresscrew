@@ -20,8 +20,7 @@
 //= require backbone/app
 //= require_tree ./backbone/views
 //= require_tree ./backbone/entities
-//= require_tree ./backbone/apps
+
 //= require jquery
-//*= require jquery_ujs
 //= require turbolinks
-//=* require_tree .
+//= require_tree ./backbone/apps
