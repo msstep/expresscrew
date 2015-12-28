@@ -4,8 +4,9 @@
     listH: ->
       console.log this
       listView = new List.Header#@getListHView()
-
       App.headerRegion.show listView
+
+
     getListHView: ->
       new List.Header
 

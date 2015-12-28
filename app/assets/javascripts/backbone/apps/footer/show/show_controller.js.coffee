@@ -7,4 +7,4 @@
       App.footerRegion.show showView
 
     getShowView: ->
-      new Show.Footer
+      new Show.Footer 
