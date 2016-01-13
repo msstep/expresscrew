@@ -15,7 +15,8 @@
 		App.module("HeaderApp").start()
 		App.module("FooterApp").start()
 
-	App.on "initialize:after", ->
+	#App.on "initialize:after", ->
+	App.on "start", ->	
 		@startHistory()
 		@navigate(@rootRoute, trigger: true) unless @getCurrentRoute()
 

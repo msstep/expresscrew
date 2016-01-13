@@ -1,12 +1,19 @@
 do (Marionette) ->
 	_.extend Marionette.Renderer,
 		
+  lookups: ["backbone/apps/", "backbone/components/"]
+
 		render: (template, data) ->
-			path = JST["backbone/apps/" + template]#@getTemplate(template)
-			console.log "99999"
+   path = JST[@getTemplate(template)]#
+   console.log path
 			throw "Template #{template} not found!" unless path
 			path(data)
 		
 		getTemplate: (template) ->
+	 	console.log JST
 			for path in [template, template.split("/").insertAt(-1, "templates").join("/")]
-				return JST[@root + path] if JST[@root + path]
+				console.log "aaa"
+				for lookup in @lookups
+					console.log "bbb"
+					console.log lookup + path
+				 return lookup + path if JST[lookup + path]

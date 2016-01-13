@@ -6,7 +6,7 @@ gem 'rails', '4.1.8'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 gem 'thin'
-gem 'rabl'
+gem 'rabl', '0.11.6'
 gem 'oj'
 gem 'gon'
 gem 'js-routes'

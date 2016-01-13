@@ -2,4 +2,4 @@
 
   class List.Header extends App.Views.ItemView
     console.log "1111"
-    template: "header/list/templates/header"
+    template: "header/list/header"
