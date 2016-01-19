@@ -9,7 +9,15 @@
         @layout = new List.Layout
 
         @layout.on "show", =>
+          # @i = 0
+          # while @i<5 do
+          #   #panelView = new List.Panel
+          #   @i +=1
+          # end  
           
+          # for i in 1..6
+          #   do console.log "1"
+
           titleView = new List.Title
           @layout.titleRegion.show titleView
 
