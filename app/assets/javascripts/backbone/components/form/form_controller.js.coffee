@@ -12,6 +12,26 @@
 
       @listenTo @formLayout, "show", @formContentRegion 
       @listenTo @formLayout, "close", @close 
+      @listenTo @formLayout, "form:submit", @formSubmit 
+
+    formSubmit: ->
+      data = Backbone.Syphon.serialize @formLayout
+      console.log "111111111"
+      console.log data
+      if @contentView.triggerMethod("form:submit", data) isnt false
+        model = @contentView.model
+        console.log model
+        @processFormSubmit data, model
+
+    processFormSubmit: (data, model) ->
+      console.log "processFormSubmit"
+      #data.id = 5
+      console.log "111111111111111111111"
+      console.log model
+      if model.save data 
+        console.log "zzz"
+      else
+        console.log "xxx"
 
     onClose: ->
       console.log "onClose", @
@@ -21,6 +41,7 @@
 
     getFormLayout: (options = {}) ->
       config = @getDefaultConfig _.result(@contentView, "form")
+      _.extend config, options
       
       buttons = @getButtons config.buttons
 
@@ -54,5 +75,4 @@
     formController = new Form.Controller
       view: contentView
       config: options
-    console.log formController.formLayout
     formController.formLayout  
