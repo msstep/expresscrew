@@ -13,6 +13,11 @@
       @listenTo @formLayout, "show", @formContentRegion 
       @listenTo @formLayout, "close", @close 
       @listenTo @formLayout, "form:submit", @formSubmit 
+      @listenTo @formLayout, "form:cancel", @formCancel
+
+    formCancel: ->
+      console.log "formCancel"
+      @contentView.triggerMethod "form:cancel"
 
     formSubmit: ->
       data = Backbone.Syphon.serialize @formLayout
@@ -20,18 +25,18 @@
       console.log data
       if @contentView.triggerMethod("form:submit", data) isnt false
         model = @contentView.model
+        collection = @contentView.collection
         console.log model
-        @processFormSubmit data, model
+        @processFormSubmit data, model, collection
 
-    processFormSubmit: (data, model) ->
+    processFormSubmit: (data, model, collection) ->
       console.log "processFormSubmit"
       #data.id = 5
       console.log "111111111111111111111"
-      console.log model
-      if model.save data 
-        console.log "zzz"
-      else
-        console.log "xxx"
+      #console.log model.save data
+      model.save data,
+        collection: collection
+        
 
     onClose: ->
       console.log "onClose", @
@@ -54,6 +59,8 @@
       _.defaults config,
         footer: true
         focusFirstInput: true
+        errors: true
+        syncing: true
         # buttons:
         #   primary: "Save"
         #   cancel: "Cancel"

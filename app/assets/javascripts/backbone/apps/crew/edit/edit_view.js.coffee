@@ -3,11 +3,20 @@
   class Edit.Layout extends App.Views.Layout
     template: "crew/edit/templates/edit_layout"
 
-    regions: 
-      formRegion: "#form-region"
+    regions:
+      titleRegion: "#title-region" 
+      formRegion:  "#form-region"
+
+  class Edit.Title extends App.Views.ItemView
+    template: "crew/edit/edit_title"
+
+    modelEvents:
+      "updated" : "render"
 
   class Edit.Crew extends App.Views.ItemView
     template: "crew/edit/templates/edit_crew"
+
+    
 
     # onFormSubmit: (data) ->
     #   console.log "Edit.Crew onFormSubmit", data

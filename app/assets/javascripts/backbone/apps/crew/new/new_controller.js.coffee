@@ -4,6 +4,17 @@
   New.Controller = 
 
     newCrew: ->
-      newView = new New.Crew
+      crew = App.request "new:crew:entity"
 
-      newView
+      crew.on "created", ->
+        App.vent.trigger "crew:created", crew
+
+      newView = @getNewView crew
+
+      #newView
+      console.log newView
+      App.request "form:wrapper", newView
+
+    getNewView: (crew) ->
+      new New.Crew
+        model: crew

@@ -25,6 +25,25 @@ class CrewController < ApplicationController
   	 end	 
   end	
 
+  def create 
+  	 sleep 2
+
+  	 @member = Crew.new
+  	 if @member.update_attributes crew_params
+      render "crew/show"
+    else
+    	 respond_with @member
+    end	 
+  end
+
+  def destroy
+
+  	 sleep 2
+  	 member = Crew.find params[:id]
+    member.destroy()
+    render json: {}
+  end
+
   private
 
     def crew_params
