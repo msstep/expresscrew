@@ -1,14 +1,19 @@
 @PlanetExpress.module "CrewApp.List", (List, App, Backbone, Marionette, $, _) ->
 
-  List.Controller =
+  class List.Controller extends App.Controllers.Base
 
-    list: ->
+    initialize: ->
+      window.c = @
       crew = App.request "crew:entities"
 
       App.execute "when:fetched", crew, =>
-        @layout = new List.Layout
+        @layout = 
+          new List.Layout
+            collection: crew
 
-        @layout.on "show", =>
+        #@listenTo @layout, "close", @close
+
+        @listenTo @layout, "show", =>
           # @i = 0
           # while @i<5 do
           #   #panelView = new List.Panel
@@ -23,12 +28,12 @@
 
           panelView = new List.Panel
           
-          panelView.on "new:crew:button:clicked", =>
+          @listenTo panelView, "new:crew:button:clicked", =>
             newView = App.request "new:crew:member:view"
 
             # newView.on "form:cancel:button:clicked", =>
             #   @layout.newRegion.empty() # в уроке метод close()
-            newView.on "form:cancel", =>
+            @listenTo newView, "form:cancel", =>
               @layout.newRegion.empty() # в уроке метод close()
 
 
@@ -44,16 +49,19 @@
             new List.Crew
               collection: crew
 
-          crewView.on "childview:crew:member:clicked", (child, args) ->
+          @listenTo crewView, "childview:crew:member:clicked", (child, args) ->
             App.vent.trigger "crew:member:clicked", args.model
 
-          crewView.on "childview:crew:delete:clicked", (child, args) ->
+          @listenTo crewView, "childview:crew:delete:clicked", (child, args) ->
             model = args.model
             if confirm "Are you sure you want to delete #{model.get("name")}?" then model.destroy() else false
 
           @layout.crewRegion.show crewView
 
-        App.mainRegion.show @layout
+        @show @layout
 
     getListView: ->
-      new List.Crew       
+      new List.Crew     
+
+    onClose: ->
+      console.info "closing controller!"    

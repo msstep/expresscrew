@@ -4,14 +4,14 @@
 	
 	_.extend Marionette.View::,
 
-	 addOpacityWrapper: (init = true) ->
-	   @$el.toggleWrapper
-	     className: "opacity"
-	   , init
+		addOpacityWrapper: (init = true) ->
+		  @$el.toggleWrapper
+		    className: "opacity"
+		  , init
 
-	 setInstancePropertiesFor: (args...) ->
-	   for key, val of _.pick(@options, args...)
-	   	  @[key] = val
+		setInstancePropertiesFor: (args...) ->
+		  for key, val of _.pick(@options, args...)
+		 	  @[key] = val
 	
 		remove: (args...) ->
 			console.log "removing", @		
@@ -22,13 +22,12 @@
 				   backgroundColor: "red"
 
 				 wrapper.fadeOut 400, ->
-				   $(@).remove()
+				   $(@).remove() 
 
 				 @$el.fadeOut 400, =>    
-			    _remove.apply @, args
-	
-	  else
-	  	 _remove.apply @, args
+			    _remove.apply @, args	
+			else
+	    	 _remove.apply @, args
 	  	 
 		templateHelpers: ->
 			
