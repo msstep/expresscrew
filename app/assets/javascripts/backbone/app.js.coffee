@@ -1,6 +1,9 @@
 @PlanetExpress = do (Backbone, Marionette) ->
 	
 	App = new Marionette.Application
+
+	App.on "initialize:before", (options) ->
+	  App.environment = options.environment
 	
 	App.addRegions
 		headerRegion: "#header-region"
@@ -15,9 +18,15 @@
 		App.module("HeaderApp").start()
 		App.module("FooterApp").start()
 
-  App.reqres.setHandler "default:region", ->
-    App.mainRegion		
+ App.reqres.setHandler "default:region", ->
+   App.mainRegion		
 
+ App.commands.setHandler "register:instance", (instance, id) ->
+   App.register instance, id if App.environment is "development"
+
+ App.commands.setHandler "unregister:instance", (instance, id) ->
+   App.unregister instance, id if App.environment is "development"
+   
 	#App.on "initialize:after", ->
 	App.on "start", ->	
 		@startHistory()

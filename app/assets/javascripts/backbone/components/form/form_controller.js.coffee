@@ -1,6 +1,6 @@
 @PlanetExpress.module "Components.Form", (Form, App, Backbone, Marionette, $, _) ->
 
-  class Form.Controller extends Marionette.Controller
+  class Form.Controller extends App.Controllers.Base
 
     initialize: (options = {}) ->
       @contentView = options.view
@@ -11,7 +11,7 @@
       #  @formContentRegion() заменим  на 
 
       @listenTo @formLayout, "show", @formContentRegion 
-      @listenTo @formLayout, "close", @close 
+
       @listenTo @formLayout, "form:submit", @formSubmit 
       @listenTo @formLayout, "form:cancel", @formCancel
 
@@ -42,7 +42,9 @@
       console.log "onClose", @
 
     formContentRegion: ->
-      @formLayout.formContentRegion.show @contentView
+      @region = @formLayout.formContentRegion
+      @show @contentView
+      #@formLayout.formContentRegion.show @contentView
 
     getFormLayout: (options = {}) ->
       config = @getDefaultConfig _.result(@contentView, "form")

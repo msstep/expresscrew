@@ -1,10 +1,10 @@
 @PlanetExpress.module "HeaderApp.List", (List, App, Backbone, Marionette, $, _) ->
 
-  List.Controller = 
+  class List.Controller extends App.Controllers.Base
     listH: ->
-      console.log this
+      #console.log this
       listView = new List.Header#@getListHView()
-      App.headerRegion.show listView
+      @show listView
 
 
     getListHView: ->
