@@ -2,7 +2,6 @@
 
   class List.Controller extends App.Controllers.Base
     listH: ->
-      #console.log this
       listView = new List.Header#@getListHView()
       @show listView
 

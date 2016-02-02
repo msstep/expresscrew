@@ -10,8 +10,6 @@ class CrewController < ApplicationController
   end
 
   def show
-  	 #sleep 5
-  	 # console.log "123"
   	 @member = Crew.find params[:id]
   end
 
@@ -30,16 +28,16 @@ class CrewController < ApplicationController
 
   	 @member = Crew.new
   	 if @member.update_attributes crew_params
-      render "crew/show"
-    else
+       render "crew/show"
+     else
     	 respond_with @member
-    end	 
+     end	 
   end
 
   def destroy
 
-  	 sleep 2
-  	 member = Crew.find params[:id]
+  	sleep 2
+  	member = Crew.find params[:id]
     member.destroy()
     render json: {}
   end

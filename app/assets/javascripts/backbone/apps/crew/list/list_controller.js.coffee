@@ -3,8 +3,6 @@
   class List.Controller extends App.Controllers.Base
     
     initialize: ->
-      #console.log "pppppppppppp"
-      #window.c = @
       crew = App.request "crew:entities"
       
       App.execute "when:fetched", crew, =>

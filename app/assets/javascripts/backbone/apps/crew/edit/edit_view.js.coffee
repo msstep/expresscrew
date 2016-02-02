@@ -19,7 +19,6 @@
     
 
     # onFormSubmit: (data) ->
-    #   console.log "Edit.Crew onFormSubmit", data
     #   false
 
     # form:

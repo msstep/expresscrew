@@ -24,8 +24,6 @@
 		  super data, options
 
 	  saveSucces: (isNew, collection) => #(model, response, options) =>
-	   # console.log "saveSucces"
-	   # console.info "succes", @, response, options
 	    if isNew # model is being created
 	      collection.add @ if collection
 	   	  collection.trigger "model:created", @ if collection 
@@ -37,9 +35,6 @@
 
 	  saveError: (model, xhr, options) =>
 		## set errors directly on the model unless status returned was 500 or 404
-		  console.warn xhr, model
 		  @set _errors: $.parseJSON(xhr.responseText)?.errors unless xhr.status is 500 or xhr.status is 404  	 
-		  console.log 333333333
-		  console.log xhr.responseText
 
 	         

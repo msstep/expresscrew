@@ -1,7 +1,6 @@
 do (Backbone) ->
   _sync = Backbone.sync
   Backbone.sync = (method, entity, options = {}) ->
-    #console.log entity
     
     _.defaults options,
       beforeSend: _.bind(methods.beforeSend, entity)

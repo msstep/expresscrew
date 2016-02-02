@@ -57,7 +57,6 @@
         @addError name, array[0]
 
     addError: (name, error) ->
-      console.warn name, error
       el = @$("[name='#{name}']")
       sm = $("<small>").text(error)
       el.after(sm).closest(".row").addClass("error")

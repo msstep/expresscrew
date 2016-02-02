@@ -24,8 +24,10 @@ do (Backbone) ->
 		# освобождаем память контроллеры
 
 		resetRegistry: ->
-		  oldCount = @getRegistrySize
+		  oldCount = @getRegistrySize()
 		  for key, controller of @_registry
+		  	 console.log "222" 
+		  	 console.log controller.region
 		  	 controller.region.close()
 		  msg = "There were #{oldCount} controllers in the registry, there are now #{@getRegistrySize()}"
 			 if @getRegistrySize() > 0 then console.warn(msg, @_registry) else console.log(msg)

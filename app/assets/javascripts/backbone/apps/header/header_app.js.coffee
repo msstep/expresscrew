@@ -7,5 +7,4 @@
         region: App.headerRegion
 
   HeaderApp.on "start", ->
-    console.log "3"
     API.list()

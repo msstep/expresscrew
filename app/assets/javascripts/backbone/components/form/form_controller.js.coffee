@@ -16,24 +16,17 @@
       @listenTo @formLayout, "form:cancel", @formCancel
 
     formCancel: ->
-      console.log "formCancel"
       @contentView.triggerMethod "form:cancel"
 
     formSubmit: ->
       data = Backbone.Syphon.serialize @formLayout
-      console.log "111111111"
-      console.log data
       if @contentView.triggerMethod("form:submit", data) isnt false
         model = @contentView.model
         collection = @contentView.collection
-        console.log model
         @processFormSubmit data, model, collection
 
     processFormSubmit: (data, model, collection) ->
-      console.log "processFormSubmit"
       #data.id = 5
-      console.log "111111111111111111111"
-      #console.log model.save data
       model.save data,
         collection: collection
         

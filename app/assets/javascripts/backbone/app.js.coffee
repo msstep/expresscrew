@@ -2,7 +2,7 @@
 	
 	App = new Marionette.Application
 
-	App.on "initialize:before", (options) ->
+	App.on "before:start", (options) ->
 	  App.environment = options.environment
 	
 	App.addRegions
@@ -13,8 +13,6 @@
 	App.rootRoute = Routes.crew_index_path()
 	
 	App.addInitializer ->
-		console.log "1"
-		console.log App.rootRoute
 		App.module("HeaderApp").start()
 		App.module("FooterApp").start()
 
@@ -22,6 +20,8 @@
    App.mainRegion		
 
  App.commands.setHandler "register:instance", (instance, id) ->
+   console.log "11111111"
+   console.log App.environment
    App.register instance, id if App.environment is "development"
 
  App.commands.setHandler "unregister:instance", (instance, id) ->

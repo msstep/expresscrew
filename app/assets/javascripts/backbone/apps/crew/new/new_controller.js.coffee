@@ -12,7 +12,6 @@
       newView = @getNewView crew
 
       #newView
-      console.log newView
       formView = App.request "form:wrapper", newView
 
       @listenTo newView, "form:cancel", =>
